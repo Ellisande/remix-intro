@@ -1,0 +1,52 @@
+body {
+  /* background-color: black; */
+  background-image: linear-gradient(
+    135deg,
+    red 10%,
+    red 20%,
+    yellow 40%,
+    yellow 50%,
+    blue 90%,
+    green 100%
+  );
+  background-repeat: no-repeat;
+  min-width: 100vw;
+  min-height: 100vh;
+  font-size: 2rem;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+a:hover {
+  animation: trip-out 3s infinite ease-in-out;
+  border-radius: 5rem;
+}
+
+@keyframes trip-out {
+  0% {
+    color: black;
+  }
+  30% {
+    color: purple;
+  }
+  40% {
+    color: blue;
+    font-size: 2.5rem;
+    margin: 2rem;
+  }
+  70% {
+    color: orange;
+    margin-left: -2rem;
+  }
+  100% {
+    color: black;
+  }
+}
