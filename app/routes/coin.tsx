@@ -1,11 +1,11 @@
 import { json, LoaderFunction } from "@remix-run/node";
 import { Link, Outlet, useLoaderData } from "@remix-run/react";
-import { ApiKey, baseUrl } from "~/api.server";
+import { getApiKey, baseUrl } from "~/api.server";
 
 export const loader: LoaderFunction = async () => {
   const currencyResponse = await fetch(`${baseUrl}/map?start=1&limit=20`, {
     headers: {
-      "X-CMC_PRO_API_KEY": ApiKey,
+      "X-CMC_PRO_API_KEY": getApiKey(),
     },
   });
   const currencies = await currencyResponse.json();
@@ -25,7 +25,7 @@ export default function Index() {
           {nameSymbol.map((pair: any) => {
             return (
               <li key={pair.symbol}>
-                <Link to={`/coin/${pair.symbol}`}>
+                <Link to={`/coin/${pair.symbol}`} prefetch="intent">
                   {pair.name}({pair.symbol})
                 </Link>
               </li>
