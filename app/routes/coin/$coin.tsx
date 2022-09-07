@@ -1,10 +1,9 @@
-import {
+import type {
   ActionFunction,
-  json,
   LinksFunction,
   LoaderFunction,
-  redirect,
 } from "@remix-run/node";
+import { json, redirect } from "@remix-run/node";
 import { useActionData, useLoaderData } from "@remix-run/react";
 import { getApiKey, baseUrl } from "~/api.server";
 
