@@ -4,7 +4,7 @@ import type {
   LoaderFunction,
 } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
-import { useActionData, useLoaderData } from "@remix-run/react";
+import { useLoaderData } from "@remix-run/react";
 import { getApiKey, baseUrl } from "~/api.server";
 
 import coinSpecificStyleUrl from "../../styles/coinSpecific.css";
@@ -12,19 +12,12 @@ export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: coinSpecificStyleUrl }];
 };
 
+// Step 7 - Do something on form submit by exporting an action function
+// Have it redirect back to the current url at the end
 export const action: ActionFunction = async ({ request }) => {
   let body = Object.fromEntries(new URLSearchParams(await request.text()));
   const price = Number(body.price);
-  const name = body.name;
-  const unitsPurchased = 100 / price;
-  // --- Talk to my API or Database, or whatever! --- //
-  console.log(`Bought ${unitsPurchased} units of ${name}`);
-  if (body.name == "Bitcoin") {
-    return json({ error: "Never, ever, buy bitcoin" });
-  }
-  const url = new URL(request.url);
-  url.searchParams.set("unitsPurchased", String(unitsPurchased));
-  return redirect(url.toString());
+  return redirect("/");
 };
 
 export const loader: LoaderFunction = async ({ params, request }) => {
@@ -39,31 +32,26 @@ export const loader: LoaderFunction = async ({ params, request }) => {
   );
   const currencyJson = await currencyResponse.json();
   const currency = Object.values(currencyJson.data)[0];
-  const url = new URL(request.url);
-  const unitsPurchased = url.searchParams.get("unitsPurchased");
-  return json({ currency, unitsPurchased });
+  return json({ currency });
 };
 
 export default function CoinDetails() {
-  const { currency, unitsPurchased } = useLoaderData();
-  const { error } = useActionData() || {};
+  const { currency } = useLoaderData();
   const { quote } = currency;
   const price = Number(quote.USD.price);
   return (
     <div className="coin-text">
-      {error && <h2>{error}</h2>}
-      {unitsPurchased && (
-        <h2>You bought {Number(unitsPurchased).toFixed(2)} units</h2>
-      )}
       <h3>
         {currency.name} ({currency.symbol})
       </h3>
       <div>${price.toFixed(2)}</div>
-      <form method="post">
-        <input type="hidden" name="price" value={quote.USD.price} />
-        <input type="hidden" name="name" value={currency.name} />
-        <button>Buy $100</button>
-      </form>
+      {/*
+        Step 7 -- Add an html form with method="post"
+        Include two hidden inputs
+          1. name: price, value: quote USD price
+          2. name: name, value: currency name
+        Include one button
+      */}
     </div>
   );
 }
