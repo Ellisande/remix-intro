@@ -1,41 +1,254 @@
-import { json, LoaderFunction } from "@remix-run/node";
-import { Link, Outlet, useLoaderData } from "@remix-run/react";
-import { getApiKey, baseUrl } from "~/api.server";
-
-export const loader: LoaderFunction = async () => {
-  const currencyResponse = await fetch(`${baseUrl}/map?start=1&limit=20`, {
-    headers: {
-      "X-CMC_PRO_API_KEY": getApiKey(),
-    },
-  });
-  const currencies = await currencyResponse.json();
-  return json({ currencies });
-};
+import { Link, Outlet } from "@remix-run/react";
 
 export default function Index() {
-  const { currencies } = useLoaderData();
+  const { currencies } = { currencies: fakeData };
   const nameSymbol = currencies.data.map((currency: any) => ({
     name: currency.name,
     symbol: currency.symbol,
   }));
+  // Step 1 - Use the fake data to populate the nav list with crypto currency name/symbols
+  // See results at https://localhost:3000/coin
   return (
     <div style={{ display: "grid", gridTemplateColumns: "1fr 2fr" }}>
       <nav>
         <ul>
-          {nameSymbol.map((pair: any) => {
-            return (
-              <li key={pair.symbol}>
-                <Link to={`/coin/${pair.symbol}`} prefetch="intent">
-                  {pair.name}({pair.symbol})
-                </Link>
-              </li>
-            );
-          })}
+          <li>Where the wild links are</li>
         </ul>
       </nav>
-      <main>
-        <Outlet />
-      </main>
+      <main>Placeholder</main>
     </div>
   );
 }
+
+const fakeData = {
+  status: {
+    timestamp: "2022-09-07T21:09:26.506Z",
+    error_code: 0,
+    error_message: null,
+    elapsed: 15,
+    credit_count: 1,
+    notice: null,
+  },
+  data: [
+    {
+      id: 1,
+      name: "Bitcoin",
+      symbol: "BTC",
+      slug: "bitcoin",
+      rank: 1,
+      is_active: 1,
+      first_historical_data: "2013-04-28T18:47:21.000Z",
+      last_historical_data: "2022-09-07T20:59:00.000Z",
+      platform: null,
+    },
+    {
+      id: 2,
+      name: "Litecoin",
+      symbol: "LTC",
+      slug: "litecoin",
+      rank: 21,
+      is_active: 1,
+      first_historical_data: "2013-04-28T18:47:22.000Z",
+      last_historical_data: "2022-09-07T20:59:00.000Z",
+      platform: null,
+    },
+    {
+      id: 3,
+      name: "Namecoin",
+      symbol: "NMC",
+      slug: "namecoin",
+      rank: 648,
+      is_active: 1,
+      first_historical_data: "2013-04-28T18:47:22.000Z",
+      last_historical_data: "2022-09-07T20:59:00.000Z",
+      platform: null,
+    },
+    {
+      id: 4,
+      name: "Terracoin",
+      symbol: "TRC",
+      slug: "terracoin",
+      rank: 1815,
+      is_active: 1,
+      first_historical_data: "2013-04-28T18:47:22.000Z",
+      last_historical_data: "2022-09-07T20:59:00.000Z",
+      platform: null,
+    },
+    {
+      id: 5,
+      name: "Peercoin",
+      symbol: "PPC",
+      slug: "peercoin",
+      rank: 779,
+      is_active: 1,
+      first_historical_data: "2013-04-28T18:47:23.000Z",
+      last_historical_data: "2022-09-07T20:59:00.000Z",
+      platform: null,
+    },
+    {
+      id: 6,
+      name: "Novacoin",
+      symbol: "NVC",
+      slug: "novacoin",
+      rank: 2358,
+      is_active: 1,
+      first_historical_data: "2013-04-28T18:47:23.000Z",
+      last_historical_data: "2022-09-07T20:59:00.000Z",
+      platform: null,
+    },
+    {
+      id: 8,
+      name: "Feathercoin",
+      symbol: "FTC",
+      slug: "feathercoin",
+      rank: 1428,
+      is_active: 1,
+      first_historical_data: "2013-05-03T03:25:15.000Z",
+      last_historical_data: "2022-09-07T20:59:00.000Z",
+      platform: null,
+    },
+    {
+      id: 10,
+      name: "Freicoin",
+      symbol: "FRC",
+      slug: "freicoin",
+      rank: 1821,
+      is_active: 1,
+      first_historical_data: "2013-05-03T03:25:15.000Z",
+      last_historical_data: "2022-09-07T20:59:00.000Z",
+      platform: null,
+    },
+    {
+      id: 13,
+      name: "Ixcoin",
+      symbol: "IXC",
+      slug: "ixcoin",
+      rank: 1697,
+      is_active: 1,
+      first_historical_data: "2013-05-08T05:20:18.000Z",
+      last_historical_data: "2022-09-07T20:59:00.000Z",
+      platform: null,
+    },
+    {
+      id: 16,
+      name: "WorldCoin",
+      symbol: "WDC",
+      slug: "worldcoin",
+      rank: 6818,
+      is_active: 1,
+      first_historical_data: "2013-05-22T03:20:20.000Z",
+      last_historical_data: "2022-09-07T20:59:00.000Z",
+      platform: null,
+    },
+    {
+      id: 18,
+      name: "Digitalcoin",
+      symbol: "DGC",
+      slug: "digitalcoin",
+      rank: 2168,
+      is_active: 1,
+      first_historical_data: "2013-06-09T17:55:21.000Z",
+      last_historical_data: "2022-09-07T20:59:00.000Z",
+      platform: null,
+    },
+    {
+      id: 25,
+      name: "Goldcoin",
+      symbol: "GLC",
+      slug: "goldcoin",
+      rank: 1411,
+      is_active: 1,
+      first_historical_data: "2013-06-14T06:45:28.000Z",
+      last_historical_data: "2022-09-07T20:59:00.000Z",
+      platform: null,
+    },
+    {
+      id: 35,
+      name: "Phoenixcoin",
+      symbol: "PXC",
+      slug: "phoenixcoin",
+      rank: 1473,
+      is_active: 1,
+      first_historical_data: "2013-07-04T05:15:49.000Z",
+      last_historical_data: "2022-09-07T20:59:00.000Z",
+      platform: null,
+    },
+    {
+      id: 37,
+      name: "Megacoin",
+      symbol: "MEC",
+      slug: "megacoin",
+      rank: 2326,
+      is_active: 1,
+      first_historical_data: "2013-07-07T13:56:51.000Z",
+      last_historical_data: "2022-09-07T20:59:00.000Z",
+      platform: null,
+    },
+    {
+      id: 41,
+      name: "Infinitecoin",
+      symbol: "IFC",
+      slug: "infinitecoin",
+      rank: 732,
+      is_active: 1,
+      first_historical_data: "2013-07-10T13:27:02.000Z",
+      last_historical_data: "2022-09-07T20:59:00.000Z",
+      platform: null,
+    },
+    {
+      id: 42,
+      name: "Primecoin",
+      symbol: "XPM",
+      slug: "primecoin",
+      rank: 1259,
+      is_active: 1,
+      first_historical_data: "2013-07-11T03:21:19.000Z",
+      last_historical_data: "2022-09-07T20:59:00.000Z",
+      platform: null,
+    },
+    {
+      id: 43,
+      name: "Anoncoin",
+      symbol: "ANC",
+      slug: "anoncoin",
+      rank: 2352,
+      is_active: 1,
+      first_historical_data: "2013-07-15T01:31:35.000Z",
+      last_historical_data: "2022-09-07T20:59:00.000Z",
+      platform: null,
+    },
+    {
+      id: 45,
+      name: "CasinoCoin",
+      symbol: "CSC",
+      slug: "casinocoin",
+      rank: 4322,
+      is_active: 1,
+      first_historical_data: "2013-07-25T03:06:28.000Z",
+      last_historical_data: "2022-09-07T20:59:00.000Z",
+      platform: null,
+    },
+    {
+      id: 52,
+      name: "XRP",
+      symbol: "XRP",
+      slug: "xrp",
+      rank: 7,
+      is_active: 1,
+      first_historical_data: "2013-08-04T18:51:05.000Z",
+      last_historical_data: "2022-09-07T20:59:00.000Z",
+      platform: null,
+    },
+    {
+      id: 53,
+      name: "Quark",
+      symbol: "QRK",
+      slug: "quark",
+      rank: 1532,
+      is_active: 1,
+      first_historical_data: "2013-08-25T17:46:22.000Z",
+      last_historical_data: "2022-09-07T20:59:00.000Z",
+      platform: null,
+    },
+  ],
+};
