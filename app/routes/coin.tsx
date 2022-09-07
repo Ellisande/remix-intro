@@ -1,15 +1,12 @@
 import { json, LoaderFunction } from "@remix-run/node";
 import { Link, Outlet, useLoaderData } from "@remix-run/react";
 import { getApiKey, baseUrl } from "~/api.server";
+import { fakeData } from "../examples/fakeApi";
 
+// Step 2 - Implement an API call to load data
+// See examples/apiExamples.js -> Loader for sample api data
 export const loader: LoaderFunction = async () => {
-  const currencyResponse = await fetch(`${baseUrl}/map?start=1&limit=20`, {
-    headers: {
-      "X-CMC_PRO_API_KEY": getApiKey(),
-    },
-  });
-  const currencies = await currencyResponse.json();
-  return json({ currencies });
+  return json({ currencies: fakeData });
 };
 
 export default function Index() {
@@ -33,9 +30,7 @@ export default function Index() {
           })}
         </ul>
       </nav>
-      <main>
-        <Outlet />
-      </main>
+      <main>Placeholder</main>
     </div>
   );
 }
