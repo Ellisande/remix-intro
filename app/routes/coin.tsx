@@ -34,7 +34,12 @@ export default function Index() {
         </ul>
       </nav>
       <main>
-        <Outlet />
+        {/* 
+          Step 3 - Add an outlet
+                   Create routes/coin/index.tsx
+                   Add hello world component to index.tsx
+        */}
+        Placeholder
       </main>
     </div>
   );
