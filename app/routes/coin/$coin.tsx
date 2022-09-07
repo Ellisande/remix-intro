@@ -10,7 +10,7 @@ export const loader: LoaderFunction = async ({ params, request }) => {
   const coinSymbol = params.coin as string;
   return json({
     currency: {
-      name: "" + Math.random() * 10000,
+      name: "Bitcoin",
       symbol: "BTC",
       quote: {
         USD: {
