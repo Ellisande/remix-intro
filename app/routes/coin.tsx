@@ -25,7 +25,7 @@ export default function Index() {
           {nameSymbol.map((pair: any) => {
             return (
               <li key={pair.symbol}>
-                <Link to={`/coin/${pair.symbol}`} prefetch="intent">
+                <Link to={`/coin/${pair.symbol}`}>
                   {pair.name}({pair.symbol})
                 </Link>
               </li>
