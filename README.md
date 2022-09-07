@@ -1,3 +1,17 @@
+# Intro Tags
+
+- Step 0 - Hello world only
+- Step 1 - Main coin route / page layout
+- Step 2 - Main coin loader
+- Step 3 - Default coin index
+- Step 4 - Dynamic child route
+- Step 5 - Dynamic child loader
+- Step 6 - Styling
+- Step 7 - Basic action
+- Step 8 - Validation error
+
+App runs at https://localhost:3000 by default
+
 # Welcome to Remix!
 
 - [Remix Docs](https://remix.run/docs)
