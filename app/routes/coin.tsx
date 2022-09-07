@@ -26,7 +26,7 @@ export default function Index() {
             return (
               <li key={pair.symbol}>
                 <Link to={`/coin/${pair.symbol}`} prefetch="intent">
-                  {pair.name}({pair.symbol})
+                  {pair.name.substr(0, 10)}({pair.symbol.substr(0, 3)})
                 </Link>
               </li>
             );
